@@ -25,11 +25,23 @@
       </div>
 
       <div class="prose p-12 bg-white rounded-md w-[65ch]">
-        <NuxtPage />
+        <NuxtErrorBoundary>
+          <NuxtPage />
+          <template #error="{ error }">
+            <p>something broke</p>
+            <code>{{ error }}</code>
+            <p>
+              <button @click="resetError(error)">Reset</button>
+            </p>
+          </template>
+        </NuxtErrorBoundary>
       </div>
     </div>
   </div>
 </template>
 <script setup>
 const { chapters } = useCourse()
+const resetError = (error) => {
+  error.value = null
+}
 </script>

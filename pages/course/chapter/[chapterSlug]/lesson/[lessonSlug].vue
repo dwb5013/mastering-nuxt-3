@@ -14,13 +14,37 @@
         </div>
         <VideoPlayer v-if="lesson.videoId" :videoId="lesson.videoId" />
         <p>{{ lesson.text }}</p>
-        <!-- <LessonCompleteButton :modelValue="isLessonComplete" @update:modelValue="toggleComplete" /> -->
-        <LessonCompleteButton :modelValue="isLessonComplete"     @update:modelValue="
-        throw createError('Could not update');
-      " />
+        <LessonCompleteButton :modelValue="isLessonComplete" @update:modelValue="toggleComplete" />
     </div>
 </template>
 <script setup>
+definePageMeta({
+    validate({ params }) {
+        const course = useCourse();
+        const chapter = course.chapters.find(
+            (chapter) => chapter.slug === params.chapterSlug
+        );
+
+        if (!chapter) {
+            return createError({
+                statusCode: 404,
+                message: "Chapter not found",
+            })
+        }
+        const lesson = chapter.lessons.find(
+            (lesson) => lesson.slug === params.lessonSlug
+        );
+
+        if (!lesson) {
+            return createError({
+                statusCode: 404,
+                message: "Chapter not found",
+            })
+        }
+        return true
+    },
+})
+
 const course = useCourse();
 const route = useRoute();
 const chapter = computed(() => {
@@ -28,6 +52,7 @@ const chapter = computed(() => {
         (chapter) => chapter.slug === route.params.chapterSlug
     );
 });
+
 const lesson = computed(() => {
     return chapter.value.lessons.find(
         (lesson) => lesson.slug === route.params.lessonSlug

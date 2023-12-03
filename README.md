@@ -2,6 +2,8 @@
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f14ce7f4-60ae-427f-9aba-d2fd9fa0a3c2/deploy-status)](https://app.netlify.com/sites/zesty-taffy-08d647/deploys)
+
 ## Setup
 
 Make sure to install the dependencies:

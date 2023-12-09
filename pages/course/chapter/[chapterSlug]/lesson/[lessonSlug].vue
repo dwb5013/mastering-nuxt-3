@@ -19,27 +19,27 @@
 </template>
 <script setup>
 definePageMeta({
-    validate({ params }) {
+    middleware: ({ params }, from) => {
         const course = useCourse();
         const chapter = course.chapters.find(
             (chapter) => chapter.slug === params.chapterSlug
         );
 
         if (!chapter) {
-            return createError({
+            return abortNavigation(createError({
                 statusCode: 404,
                 message: "Chapter not found",
-            })
+            }))
         }
         const lesson = chapter.lessons.find(
             (lesson) => lesson.slug === params.lessonSlug
         );
 
         if (!lesson) {
-            return createError({
+            return abortNavigation(createError({
                 statusCode: 404,
-                message: "Chapter not found",
-            })
+                message: "Lesson not found",
+            }))
         }
         return true
     },

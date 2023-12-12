@@ -7,5 +7,7 @@
 pages/index.vue,f/f/ff87ee14320f4d3dd6a94ef6dde25ffe0b16242a
 @
 pages/course.vue,f/6/f6119296e808f42ff43016a5be6a279c18dc4df1
-G
-pages/course/lesson.vue,0/8/08c11f9f82070daa40e74109c3fb0b10ac2350c9
+j
+:pages/course/chapter/[chapterSlug]/lesson/[lessonSlug].vue,b/6/b6a76cf3b265aa6aa3de445379f58340485fbd3a
+L
+middleware/histroy.global.ts,6/4/643b18ee439d599170d81a23bbeab4a25ff6bc95
